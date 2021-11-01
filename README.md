@@ -11,5 +11,7 @@
 
 5. Файлы override.tf, override.tf.json и файлы содержащие в имени _override.tf и _override.tf.json в текущей папке
 
-6. Файл .terraformmc и terraform.rc в текущей папке
+6. Файл .terraformmc и terraform.rc в текущей папке.
+
+Внес не большое изменение
  
