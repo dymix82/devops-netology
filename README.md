@@ -1,22 +1,22 @@
 # devops-netology
-1. Найдите полный хеш и комментарий коммита, хеш которого начинается на aefea.  
+Вопрос 1 : Найдите полный хеш и комментарий коммита, хеш которого начинается на aefea.  
 Ответ:  
 [dima@localhost terraform]$ git show aefea --pretty=oneline  
 aefead2207ef7e2aa5dc81a34aedf0cad4c32545 Update CHANGELOG.md  
 
-2. Какому тегу соответствует коммит 85024d3?  
+Вопрос 2: Какому тегу соответствует коммит 85024d3?  
 Ответ:  
 [dima@localhost terraform]$ git tag --points-at 85024d3  
 v0.12.23  
-3.Сколько родителей у коммита b8d720? Напишите их хеши.  
+Вопрос 3: Сколько родителей у коммита b8d720? Напишите их хеши.  
 Ответ:  
 Родителя два, ниже часть вывода команды где есть их хеши
 [dima@localhost terraform]$   git cat-file -p b8d720f  
 ...  
 parent 56cd7859e05c36c06b56d013b55a252d0bb7e158  
 parent 9ea88f22fc6269854151c571162c5bcf958bee2b  
-4. Перечислите хеши и комментарии всех коммитов которые были сделаны между тегами v0.12.23 и v0.12.24.  
 
+Вопрос 4: Перечислите хеши и комментарии всех коммитов которые были сделаны между тегами v0.12.23 и v0.12.24.  
 [dima@localhost terraform]$ git log --pretty=format:"%H %B" v0.12.23..v0.12.24 
 33ff1c03bb960b332be3af2e333462dde88b279e v0.12.24  
 b14b74c4939dcab573326f4e3ee2a62e23e12f89 [Website] vmc provider links  
@@ -39,19 +39,18 @@ d5f9411f5108260320064349b757f55c09bc4b80 command: Fix bug when using terraform l
 dd01a35078f040ca984cdd349f18d0b67e486c35 Update CHANGELOG.md  
 225466bc3e5f35baa5d07197bbc079345b77525e Cleanup after v0.12.23 release  
 
-5. Найдите коммит в котором была создана функция func providerSource,   
+Вопрос 5: Найдите коммит в котором была создана функция func providerSource,  
 ее определение в коде выглядит так func providerSource(...) (вместо троеточего перечислены аргументы).  
 
 8c928e83589d90a031f811fae52a81be7153e82f, Martin Atkins, Thu Apr 2 18:04:39 2020 -0700, main: Consult local directories as potential mirrors of providers
 
-6. Найдите все коммиты в которых была изменена функция globalPluginDirs.  
-  
+Вопрос 6: Найдите все коммиты в которых была изменена функция globalPluginDirs.  
 [dima@localhost terraform]$ git log -S "globalPluginDirs" --pretty=oneline  
 35a058fb3ddfae9cfee0b3893822c9a95b920f4c main: configure credentials from the CLI config file  
 c0b17610965450a89598da491ce9b6b5cbd6393f prevent log output during init  
 8364383c359a6b738a436d1b7745ccdce178df47 Push plugin discovery down into command package  
 
-7. Кто автор функции synchronizedWriters?
+Вопрос 7: Кто автор функции synchronizedWriters?
 
 Martin Atkins  
 
