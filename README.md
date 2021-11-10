@@ -10,8 +10,8 @@ aefead2207ef7e2aa5dc81a34aedf0cad4c32545 Update CHANGELOG.md
 v0.12.23  
 Вопрос 3: Сколько родителей у коммита b8d720? Напишите их хеши.  
 Ответ:  
-Родителя два, ниже часть вывода команды где есть их хеши
-[dima@localhost terraform]$   git cat-file -p b8d720f  
+Родителя два, ниже часть вывода команды где есть их хеши  
+[dima@localhost terraform]$ git cat-file -p b8d720f  
 ...  
 parent 56cd7859e05c36c06b56d013b55a252d0bb7e158  
 parent 9ea88f22fc6269854151c571162c5bcf958bee2b  
