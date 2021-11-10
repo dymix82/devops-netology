@@ -31,7 +31,7 @@ Fixes #24384
 5c619ca1baf2e21a155fcdb4c264cc9e24a2a353 website: Remove links to the getting started guide's old location 
 
 Since these links were in the soon-to-be-deprecated 0.11 language section, I 
-think we can just remove them without needing to find an equivalent link.   
+think we can just remove them without needing to find an equivalent link.     
 06275647e2b53d97d4f0a19a0fec11f6d69820b5 Update CHANGELOG.md 
 d5f9411f5108260320064349b757f55c09bc4b80 command: Fix bug when using terraform login on Windows  
 4b6d06cc5dcb78af637bbb19c198faff37a066ed Update CHANGELOG.md  
