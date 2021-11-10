@@ -17,7 +17,7 @@ parent 56cd7859e05c36c06b56d013b55a252d0bb7e158
 parent 9ea88f22fc6269854151c571162c5bcf958bee2b  
 
 Вопрос 4: Перечислите хеши и комментарии всех коммитов которые были сделаны между тегами v0.12.23 и v0.12.24.  
-[dima@localhost terraform]$ git log --pretty=format:"%H %B" v0.12.23..v0.12.24 
+[dima@localhost terraform]$ git log --pretty=format:"%H %B" v0.12.23..v0.12.24   
 33ff1c03bb960b332be3af2e333462dde88b279e v0.12.24  
 b14b74c4939dcab573326f4e3ee2a62e23e12f89 [Website] vmc provider links  
 3f235065b9347a758efadc92295b540ee0a5e26e Update CHANGELOG.md  
@@ -26,7 +26,7 @@ Non-HTTP errors previously resulted in a panic due to dereferencing the
 resp pointer while it was nil, as part of rendering the error message.  
 This commit changes the error message formatting to cope with a nil  
 response, and extends test coverage.  
-Fixes #24384
+Fixes #24384  
 
 5c619ca1baf2e21a155fcdb4c264cc9e24a2a353 website: Remove links to the getting started guide's old location 
 
