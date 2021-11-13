@@ -1,64 +1,79 @@
-# devops-netology
-Вопрос 1 : Найдите полный хеш и комментарий коммита, хеш которого начинается на aefea.  
-Ответ:  
-[dima@localhost terraform]$ git show aefea --pretty=oneline  
-aefead2207ef7e2aa5dc81a34aedf0cad4c32545 Update CHANGELOG.md  
+# Домашнее задание к занятию "3.1. Работа в терминале, лекция 1"
 
-Вопрос 2: Какому тегу соответствует коммит 85024d3?  
-Ответ:  
-[dima@localhost terraform]$ git tag --points-at 85024d3  
-v0.12.23  
-Вопрос 3: Сколько родителей у коммита b8d720? Напишите их хеши.  
-Ответ:  
-Родителя два, ниже часть вывода команды где есть их хеши  
-[dima@localhost terraform]$ git cat-file -p b8d720f  
-...  
-parent 56cd7859e05c36c06b56d013b55a252d0bb7e158  
-parent 9ea88f22fc6269854151c571162c5bcf958bee2b  
+1. Установите средство виртуализации [Oracle VirtualBox](https://www.virtualbox.org/).   
+выполнено
 
-Вопрос 4: Перечислите хеши и комментарии всех коммитов которые были сделаны между тегами v0.12.23 и v0.12.24.  
-[dima@localhost terraform]$ git log --pretty=format:"%H %B" v0.12.23..v0.12.24   
-33ff1c03bb960b332be3af2e333462dde88b279e v0.12.24  
-b14b74c4939dcab573326f4e3ee2a62e23e12f89 [Website] vmc provider links  
-3f235065b9347a758efadc92295b540ee0a5e26e Update CHANGELOG.md  
-6ae64e247b332925b872447e9ce869657281c2bf registry: Fix panic when server is unreachable  
-Non-HTTP errors previously resulted in a panic due to dereferencing the  
-resp pointer while it was nil, as part of rendering the error message.  
-This commit changes the error message formatting to cope with a nil  
-response, and extends test coverage.  
-Fixes #24384  
-  
-5c619ca1baf2e21a155fcdb4c264cc9e24a2a353 website: Remove links to the getting started guide's old location 
+2. Установите средство автоматизации [Hashicorp Vagrant](https://www.vagrantup.com/).  
+Выполнено
+3. В вашем основном окружении подготовьте удобный для дальнейшей работы терминал. Можно предложить:
 
-Since these links were in the soon-to-be-deprecated 0.11 language section, I 
-think we can just remove them without needing to find an equivalent link.     
-06275647e2b53d97d4f0a19a0fec11f6d69820b5 Update CHANGELOG.md   
-d5f9411f5108260320064349b757f55c09bc4b80 command: Fix bug when using terraform login on Windows    
-4b6d06cc5dcb78af637bbb19c198faff37a066ed Update CHANGELOG.md  
-dd01a35078f040ca984cdd349f18d0b67e486c35 Update CHANGELOG.md  
-225466bc3e5f35baa5d07197bbc079345b77525e Cleanup after v0.12.23 release  
+	* iTerm2 в Mac OS X
+	* Windows Terminal в Windows
+	* выбрать цветовую схему, размер окна, шрифтов и т.д.
+	* почитать о кастомизации PS1/применить при желании.
 
-Вопрос 5: Найдите коммит в котором была создана функция func providerSource,  
-ее определение в коде выглядит так func providerSource(...) (вместо троеточего перечислены аргументы).  
+	Несколько популярных проблем:
+    * Добавьте Vagrant в правила исключения перехватывающих трафик для анализа антивирусов, таких как Kaspersky, если у вас возникают связанные с SSL/TLS ошибки,
+    * MobaXterm может конфликтовать с Vagrant в Windows,
+    * Vagrant плохо работает с директориями с кириллицей (может быть вашей домашней директорией), тогда можно либо изменить [VAGRANT_HOME](https://www.vagrantup.com/docs/other/environmental-variables#vagrant_home), либо создать в системе профиль пользователя с английским именем,
+    * VirtualBox конфликтует с Windows Hyper-V и его необходимо [отключить](https://www.vagrantup.com/docs/installation#windows-virtualbox-and-hyper-v),
+    * [WSL2](https://docs.microsoft.com/ru-ru/windows/wsl/wsl2-faq#does-wsl-2-use-hyper-v-will-it-be-available-on-windows-10-home) использует Hyper-V, поэтому с ним VirtualBox также несовместим,
+    * аппаратная виртуализация (Intel VT-x, AMD-V) должна быть активна в BIOS,
+    * в Linux при установке [VirtualBox](https://www.virtualbox.org/wiki/Linux_Downloads) может дополнительно потребоваться пакет `linux-headers-generic` (debian-based) / `kernel-devel` (rhel-based).  
+   выполнено
+4. С помощью базового файла конфигурации запустите Ubuntu 20.04 в VirtualBox посредством Vagrant:
 
-8c928e83589d90a031f811fae52a81be7153e82f, Martin Atkins, Thu Apr 2 18:04:39 2020 -0700, main: Consult local directories as potential mirrors of providers
+    * Создайте директорию, в которой будут храниться конфигурационные файлы Vagrant. В ней выполните `vagrant init`. Замените содержимое Vagrantfile по умолчанию следующим:
 
-Вопрос 6: Найдите все коммиты в которых была изменена функция globalPluginDirs.  
-[dima@localhost terraform]$ git log -S "globalPluginDirs" --pretty=oneline  
-35a058fb3ddfae9cfee0b3893822c9a95b920f4c main: configure credentials from the CLI config file  
-c0b17610965450a89598da491ce9b6b5cbd6393f prevent log output during init  
-8364383c359a6b738a436d1b7745ccdce178df47 Push plugin discovery down into command package  
+        ```bash
+        Vagrant.configure("2") do |config|
+            config.vm.box = "bento/ubuntu-20.04"
+        end
+        ```
 
-Вопрос 7: Кто автор функции synchronizedWriters?
-
-Martin Atkins  
-
-
-
-
-
-
-
-
-
+    * Выполнение в этой директории `vagrant up` установит провайдер VirtualBox для Vagrant, скачает необходимый образ и запустит виртуальную машину.
+    * `vagrant suspend` выключит виртуальную машину с сохранением ее состояния (т.е., при следующем `vagrant up` будут запущены все процессы внутри, которые работали на момент вызова suspend), `vagrant halt` выключит виртуальную машину штатным образом.
+  Сделано
+5. Ознакомьтесь с графическим интерфейсом VirtualBox, посмотрите как выглядит виртуальная машина, которую создал для вас Vagrant, какие аппаратные ресурсы ей выделены. Какие ресурсы выделены по-умолчанию?  
+  Оперативная память 1024Мб , 2 vCPU и жесткий диск 64 Гб
+6. Ознакомьтесь с возможностями конфигурации VirtualBox через Vagrantfile: [документация](https://www.vagrantup.com/docs/providers/virtualbox/configuration.html). Как добавить оперативной памяти или ресурсов процессора виртуальной машине?    
+   Добавив в Vagrantfile:  
+   ```bash
+   config.vm.provider "virtualbox" do |v|
+   v.memory = "2048" (требуемое количество памяти в мб)
+   v.cpus = 4 (требуемое количество процессоров)
+   end
+не забыв после этого перезапустить машину через vagrant halt / vagrant up
+7. Команда `vagrant ssh` из директории, в которой содержится Vagrantfile, позволит вам оказаться внутри виртуальной машины без каких-либо дополнительных настроек. Попрактикуйтесь в выполнении обсуждаемых команд в терминале Ubuntu.  
+   Сделано
+8. Ознакомиться с разделами `man bash`, почитать о настройках самого bash:
+    * какой переменной можно задать длину журнала `history`, и на какой строчке manual это описывается?
+    * что делает директива `ignoreboth` в bash?  
+   1.HISTSIZE - число команд для сохранения Строка 562  
+   2.Совмещает в себе две директивы ignorespace и ignoredups исключающие от записи  в историю команды с пробелом в начале строчки и исключающие дубликаты последовательных команд 
  
+9. В каких сценариях использования применимы скобки `{}` и на какой строчке `man bash` это описано?  
+
+   В случае необходимости использования в различных условных циклах, условных операторах,  
+   при запуске среде текущего командного интерпретатора. Так же ограничивает ограничивает тело функции.
+   186 и  187 строки
+10. С учётом ответа на предыдущий вопрос, как создать однократным вызовом `touch` 100000 файлов? Получится ли аналогичным образом создать 300000? Если нет, то почему?  
+    ```bash
+    vagrant@vagrant:~$ touch file{0..100000}
+    ```
+   Нет не получится т.к в этом случае  нам не даст отработать ограничение на длину командной строки ядра операционной системы. 
+Величину в байтах можно посмотреть командой.  
+   ```bash
+  vagrant@vagrant:~$ getconf ARG_MAX
+   ```
+11. В man bash поищите по `/\[\[`. Что делает конструкция `[[ -d /tmp ]]`  
+Возвращает статус 0 или 1 в зависимости от проверки условия -d /tmp
+
+12.Основываясь на знаниях о просмотре текущих (например, PATH) и установке новых переменных; командах, которые мы рассматривали, добейтесь в выводе type -a bash в виртуальной машине наличия первым пунктом в списке:
+
+13. Чем отличается планирование команд с помощью `batch` и `at`?  
+at - команда запускается в указанное время (в параметре)
+batch - запускается когда уровень загрузки системы снизится ниже 1.5.
+
+14. Завершите работу виртуальной машины чтобы не расходовать ресурсы компьютера и/или батарею ноутбука.  
+выполнено
