@@ -22,7 +22,8 @@ vagrant@vagrant:~$ cat < test.txt > test2.txt
 ```bash 
 vagrant@vagrant:~$ echo test message >/dev/tty1 
 ```
-Да если есть доступ к к контексту tty1
+Да если есть доступ к к контексту tty1  
+![img_2.png](img_2.png)
 7. Выполните команду `bash 5>&1`. К чему она приведет? Что будет, если вы выполните `echo netology > /proc/$$/fd/5`? Почему так происходит?
 
 bash 5>&1 - создаст дескриптор с 5 и перенатправит его в stdout  
