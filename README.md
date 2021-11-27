@@ -50,7 +50,6 @@ vagrant@vagrant:~$ ps -A | grep node_exporter
    1670 ?        00:00:00 node_exporter
 ```
 2. Ознакомьтесь с опциями node_exporter и выводом `/metrics` по-умолчанию. Приведите несколько опций, которые вы бы выбрали для базового мониторинга хоста по CPU, памяти, диску и сети.
-
 ```bash
 node_cpu_seconds_total{cpu="0",mode="idle"} 17.27
 node_cpu_seconds_total{cpu="0",mode="system"} 1.02
