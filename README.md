@@ -80,6 +80,8 @@ node_network_transmit_errs_total{device="eth0"} 0
 ```bash
 [    0.000000] DMI: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
 [    0.000000] Hypervisor detected: KVM
+[    0.003378] CPU MTRRs all blank - virtualized system.
+[    2.850097] systemd[1]: Detected virtualization oracle.
 ```
 
 5. Как настроен sysctl `fs.nr_open` на системе по-умолчанию? Узнайте, что означает этот параметр. Какой другой существующий лимит не позволит достичь такого числа (`ulimit --help`)?  
