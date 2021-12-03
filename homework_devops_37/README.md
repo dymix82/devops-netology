@@ -95,11 +95,13 @@ PS C:\Users\gavva> arp -a
   239.255.255.250       01-00-5e-7f-ff-fa     статический
   255.255.255.255       ff-ff-ff-ff-ff-ff     статический
 PS C:\Users\gavva> arp -d *
+PS C:\Users\gavva> arp -d 192.168.0.1
 ```
 ```bash
 vagrant@vagrant:~$ ip neigh
 10.0.2.2 dev eth0 lladdr 52:54:00:12:35:02 REACHABLE
 10.0.2.3 dev eth0 lladdr 52:54:00:12:35:03 STALE
 vagrant@vagrant:~$ sudo ip neigh flush all
+vagrant@vagrant:~$ ip neigh flush 10.2.2.2
 ```
 
