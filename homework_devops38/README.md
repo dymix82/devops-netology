@@ -27,7 +27,15 @@ vagrant@vagrant:~$ sudo ip a
        valid_lft forever preferred_lft forever
 3: dummy0: <BROADCAST,NOARP> mtu 1500 qdisc noop state DOWN group default qlen 1000
     link/ether 0a:9d:ab:82:70:cb brd ff:ff:ff:ff:ff:ff
-vagrant@vagrant:~
+vagrant@vagrant:~$ sudo ip route add 10.10.10/24 via 10.0.2.1
+vagrant@vagrant:~$ sudo ip route add 10.20.10/24 via 10.0.2.1
+vagrant@vagrant:~$ ip route show
+default via 10.0.2.2 dev eth0 proto dhcp src 10.0.2.15 metric 100
+10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15
+10.0.2.2 dev eth0 proto dhcp scope link src 10.0.2.15 metric 100
+10.10.10.0/24 via 10.0.2.1 dev eth0
+10.20.10.0/24 via 10.0.2.1 dev eth0
+vagrant@vagrant:~$
 ```
 3. Проверьте открытые TCP порты в Ubuntu, какие протоколы и приложения используют эти порты? Приведите несколько примеров.
 ```bash
