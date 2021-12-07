@@ -4,6 +4,7 @@
 Готово  
 
 ![img.png](img.png)
+
 2. Установите Google authenticator на мобильный телефон. Настройте вход в Bitwarden акаунт через Google authenticator OTP.  
 Готово  
 
