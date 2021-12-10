@@ -257,7 +257,7 @@ VAULT_EXEC='vault write -format=json pki_int/issue/example-dot-com common_name=*
 
 enroll_ssl () {
     ${VAULT_EXEC}>${JSON_NAME}
-    if [ ! -s $JSON_NAME ]; then   #Если файл пустой, лучше просроченный сертификат чем никакой
+    if [ ! -s $JSON_NAME ]; then   #Если файл пустой то выходим, лучше просроченный сертификат чем никакой
         echo "Error"
         exit 0
     else
