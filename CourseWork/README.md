@@ -120,6 +120,25 @@ Cluster ID      1d6645a8-1364-7b3f-bb5f-b023af16816d
 HA Enabled      false
 ubuntu@vault:~$
 ```
+Создал корневой сертификат
+```bash
+vault secrets enable     -path=pki_root_ca     -description="PKI Root CA"     -max-lease-ttl="262800h"     pki
+```
+Выгрузил его и указал url CA и списка отозванных
+```bash
+vault write -field=certificate pki/root/generate/internal common_name="example.com" ttl=87600h > CA_cert.crt
+vault write pki/config/urls      issuing_certificates="$VAULT_ADDR/v1/pki/ca"      crl_distribution_points="$VAULT_ADDR/v1/pki/crl"
+```
+Выпустил промежуточный и роль для выпуска сертификатов
+```bash
+vault write -format=json pki_int/intermediate/generate/internal      common_name="example.com Intermediate Authority"      | jq -r '.data.csr' > pki_intermediate.csr
+vault write -format=json pki/root/sign-intermediate csr=@pki_intermediate.csr      format=pem_bundle ttl="43800h"      | jq -r '.data.certificate' > intermediate.cert.pem
+vault write pki_int/intermediate/set-signed certificate=@intermediate.cert.pem
+vault write pki_int/roles/example-dot-com \
+     allowed_domains="example.com" \
+     allow_subdomains=true \
+     max_ttl="720h"
+```
 Выпустил сертификат для сервера
 ```commandline
   256  vault write -format=json pki_int/issue/example-dot-com common_name="*.example.com" ttl="720h" > wildcard_example.com.json
