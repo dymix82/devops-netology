@@ -87,7 +87,7 @@ for i in $(seq $count)
 do
  for ip in "${ips[@]}"
   do
-   curl -m 1 http://$ip
+   curl -I -m 1 http://$ip
    if (($? == 0))
    then
     echo $(date) Service $ip is ok >> log.log
@@ -105,7 +105,7 @@ while ((1==1))
 do
  for ip in "${ips[@]}"
   do
-   curl -m 1 http://$ip
+   curl -I -m 1 http://$ip
    if (($? == 0))
    then
     echo $(date) Service $ip is ok >> log.log
