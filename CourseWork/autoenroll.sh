@@ -19,6 +19,7 @@ parse_json() {
   cat ${JSON_NAME} | jq -r '.data.private_key' > ${KEY_NAME}
   cat ${JSON_NAME} | jq -r '.data.certificate' > ${CERT_NAME}
   cat ${JSON_NAME} | jq -r '.data.ca_chain[]' >> ${CERT_NAME}
+  rm ${JSON_NAME}
 }
 enroll_ssl
 parse_json
