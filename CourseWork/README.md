@@ -237,7 +237,7 @@ server {
     ssl_certificate_key /etc/nginx/ssl/wildcard_example.pem;
     access_log  /var/log/nginx/host.access.log  main;
 ```
-8. Откройте в браузере на хосте https адрес страницы, которую обслуживает сервер nginx.
+8. Откройте в браузере на хосте https адрес страницы, которую обслуживает сервер nginx.  
 т.к виртуалка находится в облаке добавил себе на локальную машину dns имя webtest.example.com в файл hosts 
 и добавил себе корневой сертификат в доверенные
 ![img.png](img.png)
