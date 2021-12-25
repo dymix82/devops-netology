@@ -55,9 +55,9 @@ for result in result_os.split('\n'):
 ```bash
 [opc@mylinuxbox 04-script-02-py]$ cd ~
 [opc@mylinuxbox ~]$ ./git.py
-04-script-02-py/README.md
-04-script-03-yaml/README.md
-README.md
+modified:   04-script-02-py/README.md
+modified:   04-script-03-yaml/README.md
+modified:   README.md
 [opc@mylinuxbox ~]$
 
 ```
