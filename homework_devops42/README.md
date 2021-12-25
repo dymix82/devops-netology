@@ -52,7 +52,7 @@ for result in result_os.split('\n'):
 ```
 
 ### Вывод скрипта при запуске при тестировании:
-```
+```bash
 [opc@mylinuxbox 04-script-02-py]$ cd ~
 [opc@mylinuxbox ~]$ ./git.py
 04-script-02-py/README.md
@@ -88,7 +88,7 @@ for result in result_os.split('\n'):
 ```
 
 ### Вывод скрипта при запуске при тестировании:
-```
+```bash
 [opc@mylinuxbox ~]$ ./git_mod.py
 Введите директорию репозитория, нажмите ввод если необходимо проверить текущую
 
