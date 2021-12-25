@@ -97,9 +97,9 @@ for result in result_os.split('\n'):
 Введите директорию репозитория, нажмите ввод если необходимо проверить текущую
 ~/netology/sysadm-homeworks
 Проверка осуществлена в директории ~/netology/sysadm-homeworks
-~/netology/sysadm-homeworks/04-script-02-py/README.md
-~/netology/sysadm-homeworks/04-script-03-yaml/README.md
-~/netology/sysadm-homeworks/README.md
+modified: ~/netology/sysadm-homeworks/04-script-02-py/README.md
+modified: ~/netology/sysadm-homeworks/04-script-03-yaml/README.md
+modified: ~/netology/sysadm-homeworks/README.md
 [opc@mylinuxbox ~]$
 ```
 
