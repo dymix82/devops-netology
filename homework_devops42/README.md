@@ -109,10 +109,42 @@ fatal: not a git repository (or any of the parent directories): .git
 
 ### Ваш скрипт:
 ```python
-???
+#!/usr/bin/env python3
+import socket
+import time
+from datetime import datetime
+hosts = {"drive.google.com": "0.0.0.0", "mail.google.com": "0.0.0.0", "google.com": "0.0.0.0"}
+i=1
+#while i <= 5:   #Количество итераций - 5 для отладки
+while 1 == 1: 
+for key, value in hosts.items():
+    last = value
+    value = socket.gethostbyname(key)
+    hosts[key] = value
+    now = datetime.now()
+    timenow = now.strftime("%d/%m/%Y %H:%M:%S")
+    if ( value == last):
+      print (timenow,key,value)
+    else:
+      print (timenow, "[ERROR]" ,key, "IP mismatch", last, value)
+ time.sleep(10)
+# i = i + 1
 ```
 
 ### Вывод скрипта при запуске при тестировании:
-```
-???
+```bash
+[opc@mylinuxbox ~]$ ./hosts
+25/12/2021 19:43:28 [ERROR] drive.google.com IP mismatch 0.0.0.0 142.250.185.110
+25/12/2021 19:43:28 [ERROR] mail.google.com IP mismatch 0.0.0.0 142.250.184.229
+25/12/2021 19:43:28 [ERROR] google.com IP mismatch 0.0.0.0 142.250.181.238
+25/12/2021 19:43:38 drive.google.com 142.250.185.110
+25/12/2021 19:43:38 mail.google.com 142.250.184.229
+25/12/2021 19:43:38 google.com 142.250.181.238
+25/12/2021 19:43:48 drive.google.com 142.250.185.110
+25/12/2021 19:43:48 mail.google.com 142.250.184.229
+25/12/2021 19:43:48 google.com 142.250.181.238
+25/12/2021 19:43:58 drive.google.com 142.250.185.110
+25/12/2021 19:43:58 mail.google.com 142.250.184.229
+25/12/2021 19:43:58 google.com 142.250.181.238
+
 ```
