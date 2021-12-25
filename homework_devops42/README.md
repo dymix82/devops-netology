@@ -76,9 +76,6 @@ if(len(rep_directory) == 0):
 print("Проверка осуществлена в директории "+rep_directory)
 bash_command = ["cd "+rep_directory , "git status"]
 result_os = os.popen(' && '.join(bash_command)).read()
-#result_os = os.popen(bash_command).read()
-#is_change = False
-#print(rep_directory)
 for result in result_os.split('\n'):
   if result.find('modified') != -1:
    prepare_result = result.replace('\tmodified:   ', '')
