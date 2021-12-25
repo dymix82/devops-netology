@@ -80,6 +80,8 @@ for result in result_os.split('\n'):
   if result.find('modified') != -1:
    prepare_result = result.replace('\tmodified:   ', '')
    print(rep_directory+'/'+prepare_result)
+  if result.find('fatal') != -1:
+        print(rep_directory,'- Данная директория не является git репозиторием')
 
 
 ```
@@ -90,7 +92,7 @@ for result in result_os.split('\n'):
 Введите директорию репозитория, нажмите ввод если необходимо проверить текущую
 
 Проверка осуществлена в директории /home/opc
-fatal: not a git repository (or any of the parent directories): .git
+/home/opc - Данная директория не является git репозиторием
 [opc@mylinuxbox ~]$ ./git_mod.py
 Введите директорию репозитория, нажмите ввод если необходимо проверить текущую
 ~/netology/sysadm-homeworks
