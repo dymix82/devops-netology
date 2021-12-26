@@ -40,14 +40,14 @@ for result in result_os.split('\n'):
 #!/usr/bin/env python3
 
 import os
-
-bash_command = ["cd ~/netology/sysadm-homeworks", "git status"]
+rep_directory = "cd ~/netology/sysadm-homeworks"
+bash_command = ["cd "+rep_directory , "git status"]
 result_os = os.popen(' && '.join(bash_command)).read()
-#is_change = False
+#is_change = False  
 for result in result_os.split('\n'):
     if result.find('modified') != -1:
         prepare_result = result.replace('\tmodified:   ', '')
-        print(prepare_result)
+        print(rep_directory+'/'+prepare_result)
 #        break
 ```
 
@@ -55,9 +55,9 @@ for result in result_os.split('\n'):
 ```bash
 [opc@mylinuxbox 04-script-02-py]$ cd ~
 [opc@mylinuxbox ~]$ ./git.py
-04-script-02-py/README.md
-04-script-03-yaml/README.md
-README.md
+~/netology/sysadm-homeworks/04-script-02-py/README.md
+~/netology/sysadm-homeworks/04-script-03-yaml/README.md
+~/netology/sysadm-homeworks/README.md
 [opc@mylinuxbox ~]$
 
 ```
@@ -69,19 +69,24 @@ README.md
 ```python
 #!/usr/bin/env python3
 import os
+import subprocess
+from subprocess import run, PIPE
 print("Введите директорию репозитория, нажмите ввод если необходимо проверить текущую ")
 rep_directory = input()
 if(len(rep_directory) == 0):
     rep_directory = os.getcwd()
 print("Проверка осуществлена в директории "+rep_directory)
 bash_command = ["cd "+rep_directory , "git status"]
-result_os = os.popen(' && '.join(bash_command)).read()
-for result in result_os.split('\n'):
-  if result.find('fatal') != -1:
-    print(rep_directory,'- Данная директория не является git репозиторием')
-  elif result.find('modified') != -1:
+result_os = subprocess.run(' && '.join(bash_command), shell=True, stderr=PIPE,stdout=PIPE)
+result_out = result_os.stdout.decode()
+result_err = result_os.stderr.decode()
+if result_err.find('fatal') != 1:
+  print(rep_directory,'Данная директория не является git репозиторием')
+for result in result_out.split('\n'):
+  if result.find('modified') != -1:
    prepare_result = result.replace('\tmodified:   ', '')
    print(rep_directory+'/'+prepare_result)
+
 ```
 
 ### Вывод скрипта при запуске при тестировании:
@@ -90,15 +95,17 @@ for result in result_os.split('\n'):
 Введите директорию репозитория, нажмите ввод если необходимо проверить текущую
 
 Проверка осуществлена в директории /home/opc
-/home/opc - Данная директория не является git репозиторием
+/home/opc Данная директория не является git репозиторием
 [opc@mylinuxbox ~]$ ./git_mod.py
 Введите директорию репозитория, нажмите ввод если необходимо проверить текущую
 ~/netology/sysadm-homeworks
 Проверка осуществлена в директории ~/netology/sysadm-homeworks
+~/netology/sysadm-homeworks Данная директория не является git репозиторием
 ~/netology/sysadm-homeworks/04-script-02-py/README.md
 ~/netology/sysadm-homeworks/04-script-03-yaml/README.md
 ~/netology/sysadm-homeworks/README.md
 [opc@mylinuxbox ~]$
+
 ```
 
 ## Обязательная задача 4
