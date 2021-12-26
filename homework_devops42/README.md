@@ -40,7 +40,7 @@ for result in result_os.split('\n'):
 #!/usr/bin/env python3
 
 import os
-rep_directory = "cd ~/netology/sysadm-homeworks"
+rep_directory = '~/netology/sysadm-homeworks'
 bash_command = ["cd "+rep_directory , "git status"]
 result_os = os.popen(' && '.join(bash_command)).read()
 #is_change = False  
