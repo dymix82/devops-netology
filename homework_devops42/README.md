@@ -79,12 +79,9 @@ result_os = os.popen(' && '.join(bash_command)).read()
 for result in result_os.split('\n'):
   if result.find('fatal') != -1:
     print(rep_directory,'- Данная директория не является git репозиторием')
-  if result.find('modified') != -1:
+  elif result.find('modified') != -1:
    prepare_result = result.replace('\tmodified:   ', '')
    print(rep_directory+'/'+prepare_result)
-
-
-
 ```
 
 ### Вывод скрипта при запуске при тестировании:
