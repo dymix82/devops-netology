@@ -79,13 +79,14 @@ print("Проверка осуществлена в директории "+rep_d
 bash_command = ["cd "+rep_directory , "git status"]
 result_os = subprocess.run(' && '.join(bash_command), shell=True, stderr=PIPE,stdout=PIPE)
 result_out = result_os.stdout.decode()
-result_err = result_os.stderr.decode()
-if result_err.find('fatal') != 1:
+result_code = result_os.returncode
+if result_code == 128:
   print(rep_directory,'Данная директория не является git репозиторием')
 for result in result_out.split('\n'):
   if result.find('modified') != -1:
    prepare_result = result.replace('\tmodified:   ', '')
    print(rep_directory+'/'+prepare_result)
+
 
 ```
 
@@ -96,15 +97,16 @@ for result in result_out.split('\n'):
 
 Проверка осуществлена в директории /home/opc
 /home/opc Данная директория не является git репозиторием
+
 [opc@mylinuxbox ~]$ ./git_mod.py
 Введите директорию репозитория, нажмите ввод если необходимо проверить текущую
 ~/netology/sysadm-homeworks
 Проверка осуществлена в директории ~/netology/sysadm-homeworks
-~/netology/sysadm-homeworks Данная директория не является git репозиторием
 ~/netology/sysadm-homeworks/04-script-02-py/README.md
 ~/netology/sysadm-homeworks/04-script-03-yaml/README.md
 ~/netology/sysadm-homeworks/README.md
 [opc@mylinuxbox ~]$
+
 
 ```
 
