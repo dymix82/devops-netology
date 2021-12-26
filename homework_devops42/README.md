@@ -112,7 +112,7 @@ import time
 from datetime import datetime
 hosts = {"drive.google.com": "0.0.0.0", "mail.google.com": "0.0.0.0", "google.com": "0.0.0.0"}
 i=1
-#while i <= 5:   #Количество итераций - 5 для отладки
+#while i <= 5:   #Количество итераций - 4 для отладки
 while 1 == 1: 
 for key, value in hosts.items():
     last = value
