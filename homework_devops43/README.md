@@ -74,7 +74,7 @@ while 1 == 1:
 
 ### json-файл(ы), который(е) записал ваш скрипт:
 ```json
-[opc@mylinuxbox ~]$ cat hosts.yaml
+[opc@mylinuxbox ~]$ cat hosts.json
 {"drive.google.com": "142.250.185.110"}
 {"mail.google.com": "142.250.184.229"}
 {"google.com": "142.250.181.238"}
