@@ -166,15 +166,86 @@ test_db=# select avg_width from pg_stats where tablename='orders';
 провести разбиение таблицы на 2 (шардировать на orders_1 - price>499 и orders_2 - price<=499).
 
 Предложите SQL-транзакцию для проведения данной операции.
+```bash
+test_db=# alter table orders rename to orders_old;
+ALTER TABLE
+test_db=# create table orders (id integer, title varchar(80), price integer) partition by range(price);
+CREATE TABLE
+test_db=# create table orders_1 partition of orders for values from (0) to (499);
+CREATE TABLE
+test_db=# create table orders_2 partition of orders for values from (499) to (99999999999);
+CREATE TABLE
+test_db=# insert into orders (id,title,price) select * from orders_old;
+INSERT 0 8
+test_db=# select * from orders;
+ id |        title         | price
+----+----------------------+-------
+  1 | War and peace        |   100
+  3 | Adventure psql time  |   300
+  4 | Server gravity falls |   300
+  5 | Log gossips          |   123
+  2 | My little database   |   500
+  6 | WAL never lies       |   900
+  7 | Me and my bash-pet   |   499
+  8 | Dbiezdmin            |   501
+(8 rows)
 
+test_db=# select * from orders_1;
+ id |        title         | price
+----+----------------------+-------
+  1 | War and peace        |   100
+  3 | Adventure psql time  |   300
+  4 | Server gravity falls |   300
+  5 | Log gossips          |   123
+(4 rows)
+
+test_db=# select * from orders_2;
+ id |       title        | price
+----+--------------------+-------
+  2 | My little database |   500
+  6 | WAL never lies     |   900
+  7 | Me and my bash-pet |   499
+  8 | Dbiezdmin          |   501
+(4 rows)
+
+```
 Можно ли было изначально исключить "ручное" разбиение при проектировании таблицы orders?
+```
+Изначально создать таблицу с партишенингом
+create table orders (id integer, title varchar(80), price integer) partition by range(price);
+```
+
 
 ## Задача 4
 
 Используя утилиту `pg_dump` создайте бекап БД `test_database`.
+```commandline
+bash-5.1$ pg_dump -U postgres test_db > test.dump
+bash-5.1$ cat test.dump | more
+--
+-- PostgreSQL database dump
+--
 
+-- Dumped from database version 13.6
+-- Dumped by pg_dump version 13.6
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+...
+```
 Как бы вы доработали бэкап-файл, чтобы добавить уникальность значения столбца `title` для таблиц `test_database`?
-
+Для уникальности можно добавить индекс или первичный ключ.
+    CREATE INDEX ON orders ((lower(title)));
 ---
 
 ### Как cдавать задание
