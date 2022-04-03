@@ -4,7 +4,9 @@
 
 Изучите [бэкап БД](https://github.com/netology-code/virt-homeworks/tree/master/06-db-03-mysql/test_data) и 
 восстановитесь из него.
-
+```bash
+cat test_dump.sql | docker exec -i e9947eb7d1a5 /usr/bin/mysql  --password=password test_db
+```
 Перейдите в управляющую консоль `mysql` внутри контейнера.
 Используя команду `\h` получите список управляющих команд.
 #### ответ
