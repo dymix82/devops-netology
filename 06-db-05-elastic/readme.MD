@@ -209,11 +209,11 @@ $ curl -X GET 'http://localhost:9200/_cat/indices?v'
 ```
 Создайте snapshot состояния кластера elasticsearch.
 Приведите в ответе список файлов в директории со snapshotами.
+```
+$ curl -ku elastic -X PUT http://localhost:9200/_snapshot/netology_backup/elasticsearch?wait_for_completion=true
+	{"snapshot": {"snapshot":"elasticsearch", "uuid":"s83fs4KlTnuuQqfjP6e59Q", "repository":"netology_backup","version_id":8000099,"version":"8.0.0","indices":["t0est"],"data_streams":[],"include_global_state":true,"state":"SUCCESS","start_time":"2022-03-02T04:11:05.095Z","start_time_in_millis":1646194265095,"end_time":"2022-03-02T04:11:05.495Z","end_time_in_millis":1646194265495,"duration_in_millis":400,"failures":[],"shards":{"total":1,"failed":0,"successful":1},"feature_states":[]}}
 
-		$ curl -ku elastic -X PUT http://localhost:9200/_snapshot/netology_backup/elasticsearch?wait_for_completion=true
-		{"snapshot": {"snapshot":"elasticsearch", "uuid":"s83fs4KlTnuuQqfjP6e59Q", "repository":"netology_backup","version_id":8000099,"version":"8.0.0","indices":["t0est"],"data_streams":[],"include_global_state":true,"state":"SUCCESS","start_time":"2022-03-02T04:11:05.095Z","start_time_in_millis":1646194265095,"end_time":"2022-03-02T04:11:05.495Z","end_time_in_millis":1646194265495,"duration_in_millis":400,"failures":[],"shards":{"total":1,"failed":0,"successful":1},"feature_states":[]}}
-
-		$ docker exec -it 0a5764a8b82a ls -la /var/lib/elastic/snapshots/
+$ docker exec -it 0a5764a8b82a ls -la /var/lib/elastic/snapshots/
 		total 36
 		drwxr-xr-x. 1 elasticsearch elasticsearch   176 Mar  2 04:11 .
 		drwxr-xr-x. 1 elasticsearch elasticsearch    34 Mar  2 03:56 ..
@@ -222,7 +222,7 @@ $ curl -X GET 'http://localhost:9200/_cat/indices?v'
 		drwxr-xr-x. 1 elasticsearch elasticsearch    44 Mar  2 04:11 indices
 		-rw-r--r--. 1 elasticsearch elasticsearch 17135 Mar  2 04:11 meta-s83fs4KlTnuuQqfjP6e59Q.dat
 		-rw-r--r--. 1 elasticsearch elasticsearch   308 Mar  2 04:11 snap-s83fs4KlTnuuQqfjP6e59Q.dat
-
+```
 Удалите индекс test и создайте индекс test-2. Приведите в ответе список индексов.
 ```
 $ curl -ku elastic -X DELETE 'http://localhost:9200/test?pretty'
@@ -239,13 +239,13 @@ $ curl -ku elastic -X GET 'http://localhost:9200/_cat/indices?v'
 Восстановите состояние кластера elasticsearch из snapshot, созданного ранее.
 Приведите в ответе запрос к API восстановления и итоговый список индексов.
 ```
-		$ curl -ku elastic -X POST 'http://localhost:9200/.*/_close?pretty'
+$ curl -ku elastic -X POST 'http://localhost:9200/.*/_close?pretty'
 		{
 		  "acknowledged" : true,
 		  "shards_acknowledged" : false,
 		  "indices" : { }
 		}
-		$ curl -ku elastic -X POST 'http://localhost:9200/_snapshot/netology_backup/elasticsearch/_restore?wait_for_completion=true'
+$ curl -ku elastic -X POST 'http://localhost:9200/_snapshot/netology_backup/elasticsearch/_restore?wait_for_completion=true'
 {
   "snapshot":
   {
