@@ -162,7 +162,7 @@ $ curl -ku elastic -X PUT "https://127.0.0.1:9200/_snapshot/netology_backup?pret
   }
 }
 '
-Enter host password for user 'elastic':
+Enter host password for user 'elasticsearch':
 {
   "error" : {
     "root_cause" : [
@@ -181,10 +181,10 @@ Enter host password for user 'elastic':
   "status" : 500
 }
 ```
-Разместим каталог снапшотов в /var/lib/elastic/snapshots, для этого модифицируем Dockerfile и пересоберем контейнер:
+Разместим каталог снапшотов в /var/lib/elasticsearch/snapshots, для этого модифицируем Dockerfile и пересоберем контейнер:
 
 ```
-RUN adduser -mr elastic && mkdir -p /var/lib/elasticsearch/snapshots && chown -R elastic /var/lib/elasticsearch/snapshots
+RUN mkdir -p /var/lib/elasticsearch/snapshots && chown -R elasticsearch /var/lib/elasticsearch/snapshots
 $ curl -ku elastic -X PUT "https://127.0.0.1:9200/_snapshot/netology_backup?pretty" -H 'Content-Type: application/json' -d'
  {
    "type": "fs",
