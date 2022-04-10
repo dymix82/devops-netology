@@ -184,12 +184,12 @@ Enter host password for user 'elastic':
 Разместим каталог снапшотов в /var/lib/elastic/snapshots, для этого модифицируем Dockerfile и пересоберем контейнер:
 
 ```
-RUN adduser -mr elastic && mkdir -p /var/lib/elastic/snapshots && chown -R elastic /var/lib/elastic/snapshots
+RUN adduser -mr elastic && mkdir -p /var/lib/elasticsearch/snapshots && chown -R elastic /var/lib/elasticsearch/snapshots
 $ curl -ku elastic -X PUT "https://127.0.0.1:9200/_snapshot/netology_backup?pretty" -H 'Content-Type: application/json' -d'
  {
    "type": "fs",
    "settings": {
-   "location": "/var/lib/elastic/snapshots"
+   "location": "/var/lib/elasticsearch/snapshots"
    }
  }
 '
@@ -213,7 +213,7 @@ $ curl -X GET 'http://localhost:9200/_cat/indices?v'
 $ curl -ku elastic -X PUT http://localhost:9200/_snapshot/netology_backup/elasticsearch?wait_for_completion=true
 	{"snapshot": {"snapshot":"elasticsearch", "uuid":"s83fs4KlTnuuQqfjP6e59Q", "repository":"netology_backup","version_id":8000099,"version":"8.0.0","indices":["t0est"],"data_streams":[],"include_global_state":true,"state":"SUCCESS","start_time":"2022-03-02T04:11:05.095Z","start_time_in_millis":1646194265095,"end_time":"2022-03-02T04:11:05.495Z","end_time_in_millis":1646194265495,"duration_in_millis":400,"failures":[],"shards":{"total":1,"failed":0,"successful":1},"feature_states":[]}}
 
-$ docker exec -it 0a5764a8b82a ls -la /var/lib/elastic/snapshots/
+$ docker exec -it 0a5764a8b82a ls -la /var/lib/elasticsearch/snapshots/
 		total 36
 		drwxr-xr-x. 1 elasticsearch elasticsearch   176 Mar  2 04:11 .
 		drwxr-xr-x. 1 elasticsearch elasticsearch    34 Mar  2 03:56 ..
