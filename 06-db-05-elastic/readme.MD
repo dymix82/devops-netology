@@ -56,7 +56,6 @@ ENV ES_HOME /home/elasticsearch
 ENV ES_CONFIG /home/elasticsearch/config/elasticsearch.yml
 ENV PATH=$PATH:/home/elasticsearch/bin
 RUN echo "node.name: netology_test" >> $ES_CONFIG
-RUN echo "node.roles: [ master ]" >> $ES_CONFIG
 RUN echo "path.data: /var/lib/elasticsearch" >> $ES_CONFIG
 RUN echo "path.logs: /var/log/elasticsearch" >> $ES_CONFIG
 CMD ["elasticsearch"]
