@@ -64,12 +64,12 @@ EXPOSE 9300
 ```
 https://hub.docker.com/repository/docker/dymix82/elastic
 ```bash
-[elasticsearch@031d6a6f0f5b bin]$ curl -u admin -k -X GET "https://127.0.0.1:9200                                                                                                                                                  /"
-Enter host password for user 'admin':
+curl -u elastic -k -X GET "https://127.0.0.1:9200"
+Enter host password for user 'elastic':
 {
   "name" : "netology_test",
   "cluster_name" : "elasticsearch",
-  "cluster_uuid" : "5YVevD4yQxSCAWrA1g0I-w",
+  "cluster_uuid" : "HwvhZZ4RQ4SSX8_iO9hncA",
   "version" : {
     "number" : "8.1.2",
     "build_flavor" : "default",
@@ -83,7 +83,8 @@ Enter host password for user 'admin':
   },
   "tagline" : "You Know, for Search"
 }
-[elasticsearch@031d6a6f0f5b bin]$
+[root@localhost 06-05_2]#
+
 ```
 ## Задача 2
 
@@ -103,7 +104,7 @@ Enter host password for user 'admin':
 
 Получите список индексов и их статусов, используя API и **приведите в ответе** на задание.
 ```bash
-[elasticsearch@031d6a6f0f5b _state]$ curl -ku admin  https://localhost:9200/_cat/indices
+[elasticsearch@031d6a6f0f5b _state]$ curl -ku elastic  https://localhost:9200/_cat/indices
 Enter host password for user 'admin':
 green open ind-1 BJTlOsHpQ-2Qp_Ha9bIW3A 1 0
 yellow open ind-3 6BiOqGtHTv2gHE6s8ECzIw 2 4
