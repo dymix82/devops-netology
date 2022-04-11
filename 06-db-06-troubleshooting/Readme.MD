@@ -59,6 +59,8 @@ InterfaceError: (InterfaceError) 2013: Lost connection to MySQL server during qu
 соотвественно запрос не укладывается в допустимое время ожидания. 
 Предложенное решение - увеличение значения параметра net_read_timeout
 https://dev.mysql.com/doc/refman/8.0/en/error-lost-connection.html
+Также чтобы убрать первопричину можно добавить ресурсов на машине и 
+создать индексы для оптимизации  и ускорения запросов (определить по плану запросов) 
 ```
 ## Задача 4
 
