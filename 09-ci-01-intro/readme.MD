@@ -29,9 +29,6 @@
 
 ### Ответ
 
-![img_2.png](img_2.png)  
-Workflow не экспортируются в xml в jira cloud по этому прикладываю скриншоты:  
-
 ![img_1.png](img_1.png)
 
 ![img.png](img.png)
