@@ -4,7 +4,7 @@
 2. Выполняем `docker run -d --name sonarqube -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p 9000:9000 sonarqube:8.7-community`
 3. Ждём запуск, смотрим логи через `docker logs -f sonarqube`
 4. Проверяем готовность сервиса через [браузер](http://localhost:9000)
-5. Заходим под admin\admin, меняем пароль на свой
+5. Заходим под admin\admin и меняем пароль
 
 ##### Основная часть
 
