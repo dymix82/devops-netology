@@ -16,7 +16,7 @@ folder-id: b1gbn9qvu6odceorrvk4
 compute-default-zone: ru-central1-a
 ```
 Задаём переменную token в файле variables.tf и экспортирую её export TF_VAR_token="AQA**********************xpQ"
-В Windows окружении делается через YC_TOKEN
+
 
 ## Задача 2. Создание aws ec2 или yandex_compute_instance через терраформ. 
 
