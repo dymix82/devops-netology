@@ -126,7 +126,7 @@ Terraform will perform the following actions:
       + hostname                  = (known after apply)
       + id                        = (known after apply)
       + metadata                  = {
-          + "ssh-keys" = "********"
+          + "ssh-keys" = "*******"
         }
       + name                      = "node02-prod"
       + network_acceleration_type = "standard"
