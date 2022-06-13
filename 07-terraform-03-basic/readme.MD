@@ -41,15 +41,14 @@ dynamodb.
   stage
 ```
 ```bash
-# terraform workspace select prod
-Switched to workspace "prod".
-[root@localhost terraform]# terraform plan
-data.yandex_compute_image.my_image: Reading...
+# terraform plan
 data.yandex_vpc_subnet.my_subnet: Reading...
-data.yandex_compute_image.my_image: Read complete after 0s [id=fd8mn5e1cksb3s1pcq12]
+data.yandex_compute_image.my_image: Reading...
 data.yandex_vpc_subnet.my_subnet: Read complete after 0s [id=e9bqorjpqnolc12ffc8r]
+data.yandex_compute_image.my_image: Read complete after 0s [id=fd8mn5e1cksb3s1pcq12]
 
-Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+Terraform used the selected providers to generate the following execution plan.
+Resource actions are indicated with the following symbols:
   + create
 
 Terraform will perform the following actions:
@@ -62,7 +61,7 @@ Terraform will perform the following actions:
       + hostname                  = (known after apply)
       + id                        = (known after apply)
       + metadata                  = {
-          + "ssh-keys" = "ubuntu:ssh-rsa *"
+          + "ssh-keys" = "ubuntu:ssh-rsa * ssh-key-2021-12-06"
         }
       + name                      = "node01-prod"
       + network_acceleration_type = "standard"
@@ -126,7 +125,7 @@ Terraform will perform the following actions:
       + hostname                  = (known after apply)
       + id                        = (known after apply)
       + metadata                  = {
-          + "ssh-keys" = "*******"
+          + "ssh-keys" = "ubuntu:ssh-rsa * ssh-key-2021-12-06"
         }
       + name                      = "node02-prod"
       + network_acceleration_type = "standard"
@@ -190,9 +189,9 @@ Terraform will perform the following actions:
       + hostname                  = (known after apply)
       + id                        = (known after apply)
       + metadata                  = {
-          + "ssh-keys" = "ubuntu:ssh-rsa *"
+          + "ssh-keys" = "ubuntu:ssh-rsa * ssh-key-2021-12-06"
         }
-      + name                      = "node-01-prod"
+      + name                      = "node-01-prod_4each"
       + network_acceleration_type = "standard"
       + platform_id               = "standard-v1"
       + service_account_id        = (known after apply)
@@ -254,9 +253,9 @@ Terraform will perform the following actions:
       + hostname                  = (known after apply)
       + id                        = (known after apply)
       + metadata                  = {
-          + "ssh-keys" = "ubuntu:ssh-rsa *"
+          + "ssh-keys" = "ubuntu:ssh-rsa * ssh-key-2021-12-06"
         }
-      + name                      = "node-02-prod"
+      + name                      = "node-02-prod-4each"
       + network_acceleration_type = "standard"
       + platform_id               = "standard-v1"
       + service_account_id        = (known after apply)
@@ -325,5 +324,10 @@ Changes to Outputs:
       + "e9bqorjpqnolc12ffc8r",
       + "e9bqorjpqnolc12ffc8r",
     ]
+
+───────────────────────────────────────────────────────────────────────────────
+
+Note: You didn't use the -out option to save this plan, so Terraform can't
+guarantee to take exactly these actions if you run "terraform apply" now.
 
 ```
