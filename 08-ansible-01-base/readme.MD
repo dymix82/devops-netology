@@ -197,4 +197,4 @@ ubuntu                     : ok=3    changed=0    unreachable=0    failed=0    s
 [dima@localhost mnt-netology]$
 ```
 12. Заполните `README.md` ответами на вопросы. Сделайте `git push` в ветку `master`. В ответе отправьте ссылку на ваш открытый репозиторий с изменённым `playbook` и заполненным `README.md`.  
-https://github.com/dymix82/mnt-netology
+https://github.com/dymix82/mnt-netology/tree/main/08-ansible-01-base
