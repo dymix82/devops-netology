@@ -51,6 +51,7 @@
 ```yaml
 Готово
 ```
+
 10. Выложите playbook в репозиторий.
 11. В ответ приведите ссылки на оба репозитория с roles и одну ссылку на репозиторий с playbook.
 https://github.com/dymix82/lighthouse-role
